@@ -10,6 +10,7 @@ class TrainningDiaryListView(
   APIView, # Basic View class provided by the Django Rest Framework
   UpdateModelMixin, # Mixin that allows the basic APIView to handle PUT HTTP requests
   DestroyModelMixin, # Mixin that allows the basic APIView to handle DELETE HTTP requests
+  
 ):
 
   def get(self, request, id=None):
