@@ -1,15 +1,14 @@
-
 from rest_framework import serializers
 
-from .models import Users
+from .models import TrainningUser
 
 
-class UsersSerializer(serializers.ModelSerializer):
+class TrainningUserSerializer(serializers.ModelSerializer):
   name = serializers.CharField(max_length=1000, required=True)
 
   def create(self, validated_data):
     # Once the request data has been validated, we can create a todo item instance in the database
-    return Users.objects.create(
+    return TrainningUser.objects.create(
       name=validated_data.get('name')
     )
 
@@ -20,8 +19,9 @@ class UsersSerializer(serializers.ModelSerializer):
     return instance
 
   class Meta:
-    model = Users
+    model = TrainningUser
     fields = (
       'id',
-      'name'
+      'name',
+      'intensity'
     )

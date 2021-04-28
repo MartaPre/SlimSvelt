@@ -2,14 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Users(models.Model):
-  id = models.AutoField(
+  user_id = models.AutoField(
     primary_key=True
-  )
-
-  user_type = models.TextField(
-    max_length=1000,
-    null=False,
-    blank=False
   )
 
   name = models.TextField(
@@ -44,13 +38,11 @@ class Users(models.Model):
   )
 
   weight = models.DecimalField(
-    (""), 
     max_digits=3, 
     decimal_places=2
   )
 
   height = models.DecimalField(
-    (""), 
     max_digits=3, 
     decimal_places=2
   )

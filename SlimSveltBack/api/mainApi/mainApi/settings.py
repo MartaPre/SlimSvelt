@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
-    'dietary.apps.DietaryConfig',
+    'recipes_user.apps.RecipesUserConfig',
     'recipes.apps.RecipesConfig',
     'trainning.apps.TrainningConfig',
-    'trainning_diary.apps.TrainningDiaryConfig',
+    'trainning_user.apps.TrainningUserConfig',
     'rest_framework',
 ]
 
@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         # MySQL engine. Powered by the mysqlclient module.
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'slimsvelt',
+        'NAME': 'slimSvelt',
         'USER': 'root',
         'PASSWORD': 'qwER12·$',
         'HOST': 'localhost',

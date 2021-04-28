@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Recipes(models.Model):
-  id = models.AutoField(
+  recipes_id = models.AutoField(
     primary_key=True
   )
 
