@@ -1,14 +1,14 @@
 from rest_framework import serializers
 
-from .models import Recipes
+from .models import Ingredients
 
 
-class RecipesSerializer(serializers.ModelSerializer):
+class IngredientsSerializer(serializers.ModelSerializer):
   name = serializers.CharField(max_length=1000, required=True)
 
   def create(self, validated_data):
     # Once the request data has been validated, we can create a todo item instance in the database
-    return Recipes.objects.create(
+    return Ingredients.objects.create(
       name=validated_data.get('name')
     )
 
@@ -19,9 +19,9 @@ class RecipesSerializer(serializers.ModelSerializer):
     return instance
 
   class Meta:
-    model = Recipes
+    model = Ingredients
     fields = (
-      'recipes_id',
+      'ingredients_id',
       'name',
-      'description'
+      'kcal'
     )

@@ -8,5 +8,6 @@ urlpatterns = [
   path('', include('trainning.urls')),
   path('', include('recipes.urls')),
   path('', include('recipes_user.urls')),
+  path('', include('ingredients.urls')),
   path('', include('trainning_user.urls')),
 ]

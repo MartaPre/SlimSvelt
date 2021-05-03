@@ -1,7 +1,8 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
-class Users(models.Model):
+class Users(AbstractUser):
   user_id = models.AutoField(
     primary_key=True
   )
@@ -39,12 +40,14 @@ class Users(models.Model):
 
   weight = models.DecimalField(
     max_digits=3, 
-    decimal_places=2
+    decimal_places=2,
+    default=0.0
   )
 
   height = models.DecimalField(
     max_digits=3, 
-    decimal_places=2
+    decimal_places=2,
+    default=0.0
   )
 
   creation_date = models.DateTimeField(
