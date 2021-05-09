@@ -44,12 +44,5 @@ class Trainning(models.Model):
     decimal_places=2
   )
 
-  creation_date = models.DateTimeField(
-    auto_now_add=True,
-    null=False,
-    blank=False
-  )
-
-
   class Meta:
     db_table = 'trainning'

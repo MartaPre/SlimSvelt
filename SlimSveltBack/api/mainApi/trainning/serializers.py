@@ -21,7 +21,9 @@ class TrainningSerializer(serializers.ModelSerializer):
   class Meta:
     model = Trainning
     fields = (
-      'id',
       'name',
-      'intensity'
+      'intensity',
+      'photo',
+      'trainning_id',
+      'description'
     )

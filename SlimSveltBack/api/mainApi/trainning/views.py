@@ -12,18 +12,32 @@ class TrainningListView(
   DestroyModelMixin, # Mixin that allows the basic APIView to handle DELETE HTTP requests
 ):
 
-  def get(self, request, id=None):
-    if id:
+  def get(self, request, exercise_type=None, trainning_id=None):
+    if trainning_id:
       # If an id is provided in the GET request, retrieve the Todo item by that id
       try:
         # Check if the todo item the user wants to update exists
-        queryset = Trainning.objects.get(id=id)
+        queryset = Trainning.objects.filter(trainning_id=trainning_id)
       except Trainning.DoesNotExist:
         # If the todo item does not exist, return an error response
         return Response({'errors': 'This trainning item does not exist.'}, status=400)
 
       # Serialize todo item from Django queryset object to JSON formatted data
-      read_serializer = TrainningSerializer(queryset)
+      read_serializer = TrainningSerializer(queryset, many=True)
+      
+    elif exercise_type:
+      # If an id is provided in the GET request, retrieve the Todo item by that id
+      try:
+        # Check if the todo item the user wants to update exists
+        queryset = Trainning.objects.filter(exercise_type=exercise_type)
+      except Trainning.DoesNotExist:
+        # If the todo item does not exist, return an error response
+        return Response({'errors': 'This trainning item does not exist.'}, status=400)
+
+      # Serialize todo item from Django queryset object to JSON formatted data
+      read_serializer = TrainningSerializer(queryset, many=True)
+    
+    
 
     else:
       # Get all todo items from the database using Django's model ORM
