@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
 
+
 from .models import Users
 from .serializers import UsersSerializer
 
@@ -12,12 +13,12 @@ class UsersListView(
   DestroyModelMixin, # Mixin that allows the basic APIView to handle DELETE HTTP requests
 ):
 
-  def get(self, request, id=None):
-    if id:
+  def get(self, request, email=None):
+    if email:
       # If an id is provided in the GET request, retrieve the Todo item by that id
       try:
         # Check if the todo item the user wants to update exists
-        queryset = Users.objects.get(id=id)
+        queryset = Users.objects.get(email=email)
       except Users.DoesNotExist:
         # If the Users item does not exist, return an error response
         return Response({'errors': 'This Users item does not exist.'}, status=400)
@@ -38,6 +39,7 @@ class UsersListView(
 
   def post(self, request):
     # Pass JSON data from user POST request to serializer for validation
+
     create_serializer = UsersSerializer(data=request.data)
 
     # Check if user POST data passes validation checks from serializer

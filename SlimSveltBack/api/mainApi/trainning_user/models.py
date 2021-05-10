@@ -8,19 +8,25 @@ class TrainningUser(models.Model):
     primary_key=True
   )
 
-  user= models.ForeignKey(Users, on_delete=models.CASCADE, related_name='users_identificator')
+  user= models.ForeignKey(Users, on_delete=models.CASCADE, related_name='users_identificator', null=True)
 
-  trainning = models.ForeignKey(Trainning, on_delete=models.CASCADE, related_name='trainning_identificator')
+  trainning = models.ForeignKey(Trainning, on_delete=models.CASCADE, related_name='trainning_identificator', null=True)
+
+
+  # user_id= models.IntegerField(source='users.users_id')
+
+  # trainning_id = models.IntegerField(source='tranning.tranning_id')
 
   burned_kcal = models.DecimalField(
     (""), 
+    null=True,
     max_digits=3, 
     decimal_places=2
   )
 
   creation_date = models.DateTimeField(
     auto_now_add=True,
-    null=False,
+    null=True,
     blank=False
   )
 

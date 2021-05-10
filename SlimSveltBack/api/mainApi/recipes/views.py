@@ -12,18 +12,30 @@ class RecipesListView(
   DestroyModelMixin, # Mixin that allows the basic APIView to handle DELETE HTTP requests
 ):
 
-  def get(self, request, id=None):
-    if id:
+  def get(self, request, recipe_type=None, recipes_id=None):
+    if recipes_id:
       # If an id is provided in the GET request, retrieve the Todo item by that id
       try:
         # Check if the todo item the user wants to update exists
-        queryset = Recipes.objects.get(id=id)
+        queryset = Recipes.objects.get(recipes_id=recipes_id)
       except Recipes.DoesNotExist:
         # If the todo item does not exist, return an error response
         return Response({'errors': 'This Recipes item does not exist.'}, status=400)
 
       # Serialize todo item from Django queryset object to JSON formatted data
       read_serializer = RecipesSerializer(queryset)
+
+    elif recipe_type:
+      # If an id is provided in the GET request, retrieve the Todo item by that id
+      try:
+        # Check if the todo item the user wants to update exists
+        queryset = Recipes.objects.filter(recipe_type=recipe_type)
+      except Recipes.DoesNotExist:
+        # If the todo item does not exist, return an error response
+        return Response({'errors': 'This recipe item does not exist.'}, status=400)
+
+      # Serialize todo item from Django queryset object to JSON formatted data
+      read_serializer = RecipesSerializer(queryset, many=True)
 
     else:
       # Get all todo items from the database using Django's model ORM

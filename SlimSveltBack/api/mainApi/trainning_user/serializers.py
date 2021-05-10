@@ -1,27 +1,37 @@
 from rest_framework import serializers
 
 from .models import TrainningUser
+from .models import Users
+
 
 
 class TrainningUserSerializer(serializers.ModelSerializer):
-  name = serializers.CharField(max_length=1000, required=True)
+  # trainning_i = serializers.CharField(max_length=1000, required=True)
+  # burned_kcal = serializers.DecimalField( required=True, max_digits=3, decimal_places=2)
 
+  user_id= serializers.IntegerField()
+
+  trainning_id = serializers.IntegerField()
+  
   def create(self, validated_data):
     # Once the request data has been validated, we can create a todo item instance in the database
     return TrainningUser.objects.create(
-      name=validated_data.get('name')
+      user_id=validated_data.get('user_id'),
+      trainning_id=validated_data.get('trainning_id'),
+      burned_kcal=validated_data.get('burned_kcal'),
     )
 
   def update(self, instance, validated_data):
      # Once the request data has been validated, we can update the todo item instance in the database
-    instance.name = validated_data.get('name', instance.name)
+    instance.trainning_id = validated_data.get('user_id', instance.trainning_id)
     instance.save()
     return instance
 
   class Meta:
     model = TrainningUser
     fields = (
-      'id',
-      'name',
-      'intensity'
+      'user_id',
+      'trainning_id',
+      'burned_kcal',
+      'creation_date'
     )

@@ -29,6 +29,12 @@ class Trainning(models.Model):
     null=False,
     blank=False
   )
+
+  video = models.TextField(
+    max_length=1000,
+    null=True,
+    blank=False
+  )
   
   photo = models.ImageField(
     (""), 
@@ -37,10 +43,15 @@ class Trainning(models.Model):
     width_field=None, 
     max_length=None
   )
-
+  time = models.DecimalField(
+    (""), 
+    null=True,
+    max_digits=5, 
+    decimal_places=2
+  )
   burned_kcal = models.DecimalField(
     (""), 
-    max_digits=3, 
+    max_digits=5, 
     decimal_places=2
   )
 

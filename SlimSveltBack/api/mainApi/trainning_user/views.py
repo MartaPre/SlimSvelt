@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
+from django.utils.html import escape
+
 
 from .models import TrainningUser
 from .serializers import TrainningUserSerializer
@@ -13,18 +15,18 @@ class TrainningUserListView(
   
 ):
 
-  def get(self, request, id=None):
-    if id:
+  def get(self, request, user_id=None):
+    if user_id:
       # If an id is provided in the GET request, retrieve the Todo item by that id
       try:
         # Check if the todo item the user wants to update exists
-        queryset = TrainningUser.objects.get(id=id)
+        queryset = TrainningUser.objects.filter(user_id=user_id)
       except TrainningUser.DoesNotExist:
         # If the todo item does not exist, return an error response
         return Response({'errors': 'This TrainningUser item does not exist.'}, status=400)
 
       # Serialize todo item from Django queryset object to JSON formatted data
-      read_serializer = TrainningUserSerializer(queryset)
+      read_serializer = TrainningUserSerializer(queryset, many=True)
 
     else:
       # Get all todo items from the database using Django's model ORM
@@ -39,6 +41,8 @@ class TrainningUserListView(
 
   def post(self, request):
     # Pass JSON data from user POST request to serializer for validation
+    print(request)
+    print(request.data)
     create_serializer = TrainningUserSerializer(data=request.data)
 
     # Check if user POST data passes validation checks from serializer

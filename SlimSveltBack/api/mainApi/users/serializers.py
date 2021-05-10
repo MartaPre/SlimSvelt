@@ -4,7 +4,7 @@ from .models import Users
 class UsersSerializer(ModelSerializer):
     class Meta:
         model = Users
-        fields = ('email', 'last_login', 'date_joined', 'is_staff')
+        fields = ('email', 'last_login', 'date_joined', 'is_staff', 'user_id', 'name')
 # from rest_framework import serializers
 
 # from .models import Users
