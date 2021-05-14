@@ -5,6 +5,7 @@ from django.utils.html import escape
 
 
 from .models import TrainningUser
+from .models import Trainning
 from .serializers import TrainningUserSerializer
 
 
@@ -21,6 +22,8 @@ class TrainningUserListView(
       try:
         # Check if the todo item the user wants to update exists
         queryset = TrainningUser.objects.filter(user_id=user_id)
+        
+        print(queryset)
       except TrainningUser.DoesNotExist:
         # If the todo item does not exist, return an error response
         return Response({'errors': 'This TrainningUser item does not exist.'}, status=400)
