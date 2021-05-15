@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from .models import TrainningUser
-from .models import Users
 
 
 
@@ -14,7 +13,7 @@ class TrainningUserSerializer(serializers.ModelSerializer):
   trainning_id = serializers.IntegerField()
   
   def create(self, validated_data):
-    # Once the request data has been validated, we can create a todo item instance in the database
+    # Once the request data has been validated, we caFn create a todo item instance in the database
     return TrainningUser.objects.create(
       user_id=validated_data.get('user_id'),
       trainning_id=validated_data.get('trainning_id'),

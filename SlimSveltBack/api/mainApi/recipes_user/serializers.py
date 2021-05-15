@@ -4,12 +4,16 @@ from .models import RecipesUser
 
 
 class RecipesUserSerializer(serializers.ModelSerializer):
-  name = serializers.CharField(max_length=1000, required=True)
+  user_id= serializers.IntegerField()
 
+  recipes_id = serializers.IntegerField()
   def create(self, validated_data):
     # Once the request data has been validated, we can create a todo item instance in the database
+
     return RecipesUser.objects.create(
-      name=validated_data.get('name')
+      user_id=validated_data.get('user_id'),
+      recipes_id=validated_data.get('recipes_id'),
+      grams=validated_data.get('grams'),
     )
 
   def update(self, instance, validated_data):
@@ -21,7 +25,8 @@ class RecipesUserSerializer(serializers.ModelSerializer):
   class Meta:
     model = RecipesUser
     fields = (
-      'id',
-      'name',
-      'intensity'
+      'user_id',
+      'recipes_id',
+      'grams',
+      'creation_date'
     )

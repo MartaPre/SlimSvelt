@@ -5,7 +5,6 @@ from django.utils.html import escape
 
 
 from .models import TrainningUser
-from .models import Trainning
 from .serializers import TrainningUserSerializer
 
 
