@@ -26,5 +26,6 @@ class TrainningSerializer(serializers.ModelSerializer):
       'photo',
       'trainning_id',
       'description',
-      'video'
+      'video',
+      'burned_kcal'
     )

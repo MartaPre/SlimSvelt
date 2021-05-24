@@ -12,9 +12,9 @@ class RecipesUser(models.Model):
 
   recipes = models.ForeignKey(Recipes, on_delete=models.CASCADE, related_name='recipes_identificator')
 
-  grams = models.DecimalField(
+  kcal = models.DecimalField(
     (""), 
-    max_digits=3, 
+    max_digits=5, 
     decimal_places=2
   )
 

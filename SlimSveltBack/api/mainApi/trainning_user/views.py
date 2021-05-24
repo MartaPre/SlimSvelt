@@ -93,7 +93,7 @@ class TrainningUserListView(
   def delete(self, request, id=None):
     try:
       # Check if the todo item the user wants to update exists
-      trainning_user_item = TrainningUser.objects.get(id=id)
+      trainning_user_item = TrainningUser.objects.get(id=request.data["id"])
     except TrainningUser.DoesNotExist:
       # If the todo item does not exist, return an error response
       return Response({'errors': 'This trainning_user item does not exist.'}, status=400)

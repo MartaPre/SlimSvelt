@@ -86,7 +86,7 @@ class RecipesUserListView(
   def delete(self, request, id=None):
     try:
       # Check if the todo item the user wants to update exists
-      recipes_user_item = RecipesUser.objects.get(id=id)
+      recipes_user_item = RecipesUser.objects.get(id=request.data["id"])
     except RecipesUser.DoesNotExist:
       # If the todo item does not exist, return an error response
       return Response({'errors': 'This recipes_user item does not exist.'}, status=400)

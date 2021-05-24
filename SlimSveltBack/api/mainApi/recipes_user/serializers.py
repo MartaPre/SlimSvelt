@@ -13,7 +13,7 @@ class RecipesUserSerializer(serializers.ModelSerializer):
     return RecipesUser.objects.create(
       user_id=validated_data.get('user_id'),
       recipes_id=validated_data.get('recipes_id'),
-      grams=validated_data.get('grams'),
+      kcal=validated_data.get('kcal'),
     )
 
   def update(self, instance, validated_data):
@@ -25,8 +25,9 @@ class RecipesUserSerializer(serializers.ModelSerializer):
   class Meta:
     model = RecipesUser
     fields = (
+      'id',
       'user_id',
       'recipes_id',
-      'grams',
+      'kcal',
       'creation_date'
     )

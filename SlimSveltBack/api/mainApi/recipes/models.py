@@ -40,7 +40,7 @@ class Recipes(models.Model):
 
   kcal = models.DecimalField(
     (""), 
-    max_digits=5, 
+    max_digits=6, 
     decimal_places=2
   )
 

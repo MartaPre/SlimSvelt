@@ -29,6 +29,7 @@ class TrainningUserSerializer(serializers.ModelSerializer):
   class Meta:
     model = TrainningUser
     fields = (
+      'id',
       'user_id',
       'trainning_id',
       'burned_kcal',
